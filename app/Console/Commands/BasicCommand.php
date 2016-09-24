@@ -11,19 +11,17 @@ class BasicCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'basic:cmd';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Basic Command';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
+     * BasicCommand constructor.
      */
     public function __construct()
     {
@@ -37,6 +35,8 @@ class BasicCommand extends Command
      */
     public function handle()
     {
-        //
+        $this->info("Running the Basic Command");
+//        $this->warn("This is a warning");
+//        $this->error("This is an error");
     }
 }
