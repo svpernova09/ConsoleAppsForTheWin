@@ -1,6 +1,6 @@
 <?php
 
-class YourCommandTest extends TestCase
+class BasicCommandTest extends TestCase
 {
     public function testOutput()
     {
