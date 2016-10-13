@@ -3,6 +3,8 @@
 namespace App\Console;
 
 use App\Console\Commands\BasicCommand;
+use App\Console\Commands\DatabaseBackupCommand;
+use App\Console\Commands\SnapshotRds;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -15,6 +17,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         BasicCommand::class,
+        DatabaseBackupCommand::class,
+        SnapshotRds::class,
     ];
 
     /**
