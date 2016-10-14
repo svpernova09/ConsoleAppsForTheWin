@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Console\Commands\BasicCommand;
+use App\Console\Commands\CacheApiDataCommand;
 use App\Console\Commands\DatabaseBackupCommand;
 use App\Console\Commands\S3ExampleCommand;
 use App\Console\Commands\SnapshotRds;
@@ -21,6 +22,7 @@ class Kernel extends ConsoleKernel
         DatabaseBackupCommand::class,
         SnapshotRds::class,
         S3ExampleCommand::class,
+        CacheApiDataCommand::class,
     ];
 
     /**

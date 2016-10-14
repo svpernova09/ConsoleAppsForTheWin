@@ -8,7 +8,8 @@
         "php": ">=5.6.4",
         "laravel/framework": "5.3.*",
         "laravel/homestead": "^3.0",
-        "aws/aws-sdk-php": "^3.19"
+        "aws/aws-sdk-php": "^3.19",
+        "dms/meetup-api-client": "^2.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
