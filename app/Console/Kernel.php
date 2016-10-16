@@ -3,8 +3,10 @@
 namespace App\Console;
 
 use App\Console\Commands\BasicCommand;
+use App\Console\Commands\BatchProcessCommand;
 use App\Console\Commands\CacheApiDataCommand;
 use App\Console\Commands\DatabaseBackupCommand;
+use App\Console\Commands\GetAllMeetupsCommand;
 use App\Console\Commands\S3ExampleCommand;
 use App\Console\Commands\SnapshotRds;
 use Illuminate\Console\Scheduling\Schedule;
@@ -23,6 +25,8 @@ class Kernel extends ConsoleKernel
         SnapshotRds::class,
         S3ExampleCommand::class,
         CacheApiDataCommand::class,
+        BatchProcessCommand::class,
+        GetAllMeetupsCommand::class,
     ];
 
     /**
@@ -33,8 +37,17 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        // Snapshot RDS At midnight every night
+        $schedule->command('backup:rds')->daily();
+
+        // Refresh our Meetup DB every 30 minutes
+        $schedule->command('meetup:pull')->everyThirtyMinutes();
+
+        // Expire old Meet ups daily at 8:00 AM
+        $schedule->command('meetup:expire')->dailyAt('08:00');
+
+        // Back up our DB on the 1st of the month @ 1:00 AM
+        $schedule->command('meetup:expire')->monthlyOn(1, '01:00');
     }
 
     /**
