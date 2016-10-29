@@ -2,11 +2,14 @@
 
 namespace App\Console;
 
+use App\Console\Commands\ArgumentExampleCommand;
 use App\Console\Commands\BasicCommand;
 use App\Console\Commands\BatchProcessCommand;
 use App\Console\Commands\CacheApiDataCommand;
 use App\Console\Commands\DatabaseBackupCommand;
 use App\Console\Commands\GetAllMeetupsCommand;
+use App\Console\Commands\OptionExampleCommand;
+use App\Console\Commands\PromptExampleCommand;
 use App\Console\Commands\S3ExampleCommand;
 use App\Console\Commands\SnapshotRds;
 use Illuminate\Console\Scheduling\Schedule;
@@ -27,12 +30,15 @@ class Kernel extends ConsoleKernel
         CacheApiDataCommand::class,
         BatchProcessCommand::class,
         GetAllMeetupsCommand::class,
+        ArgumentExampleCommand::class,
+        OptionExampleCommand::class,
+        PromptExampleCommand::class,
     ];
 
     /**
      * Define the application's command schedule.
      *
-     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
+     * @param  \Illuminate\Console\Scheduling\Schedule $schedule
      * @return void
      */
     protected function schedule(Schedule $schedule)

@@ -48,6 +48,7 @@ class CacheApiDataCommand extends Command
             'page' => $results, // Results to return
         ]);
 
+        $bar = $this->output->createProgressBar(count($all_events));
         foreach ($all_events as $event) {
             $event_date = Carbon::createFromTimestamp(
                 $event['time'] / 1000
@@ -67,9 +68,22 @@ class CacheApiDataCommand extends Command
             $meetup->venue_address_1 = $event['venue']['address_1'];
             $meetup->save();
 
-            $this->info($event['name'] . ' on ' . $event_date);
+            $this->info(' ' . $event['name'] . ' on ' . $event_date);
+            $bar->advance();
+
+            $events[] = [
+                'name' => $event['name'],
+                'date' => $event_date,
+            ];
         }
+        $bar->finish();
+
         $this->info('Found ' . count($all_events) . ' events');
+
+        $headers = ['Name', 'Date'];
+
+        $this->table($headers, $events);
+
     }
 
     /**
